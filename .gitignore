@@ -1,0 +1,15 @@
+# Build output
+horizon-bridge/target/
+paper-plugin/build/
+paper-plugin/.gradle/
+
+# The test server: only its configuration is kept. Paper, the vanilla jar, libraries,
+# worlds, logs and the EULA acceptance stay local.
+test-server/*
+!test-server/bukkit.yml
+!test-server/server.properties.example
+!test-server/plugins/
+test-server/plugins/*
+!test-server/plugins/HorizonGen/
+test-server/plugins/HorizonGen/*
+!test-server/plugins/HorizonGen/config.yml

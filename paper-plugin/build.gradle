@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'dev.horizongen'
+version = '0.1.0'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+// Paper's own server jar (Mojang names at runtime), for FastChunkWriter's direct section writes.
+// Paperclip puts it in the test server the first time the server runs.
+def paperServer = file('../test-server/versions/26.3/paper-26.3.jar')
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:26.3.build.246-stable'
+    compileOnly files(paperServer)
+    compileOnly fileTree('../test-server/libraries') { include '**/*.jar' }
+}
+
+jar {
+    // Mojang-named internals: Paper must not remap this jar as Spigot-named.
+    manifest { attributes 'paperweight-mappings-namespace': 'mojang' }
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+}
+
+// Bundle the Rust library when it has been built, so the plugin can extract it.
+def nativeLib = file('../horizon-bridge/target/release/horizon_bridge.dll')
+processResources {
+    if (nativeLib.exists()) {
+        from(nativeLib) { into 'native' }
+    }
+}

@@ -1,0 +1,6 @@
+level-seed=12345
+online-mode=false
+server-port=25599
+spawn-protection=0
+view-distance=4
+simulation-distance=4

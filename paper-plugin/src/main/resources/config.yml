@@ -1,0 +1,25 @@
+# horizon-prepare's output: the folder holding facts.json and worldgen/.
+resources: ''
+# The Rust library. Empty: the copy bundled in the plugin jar, extracted to this folder.
+library: ''
+# false: Paper's own vanilla biome source places biomes (identical to Horizon's).
+# true: biomes also come from Rust.
+rust-biomes: false
+# true: write Horizon's blocks straight into Paper's chunk sections (needs Paper 26.3's internals;
+# falls back by itself). false: the plugin API, one ChunkData.setBlock per block.
+fast-write: true
+# Log how long Rust takes per chunk, every this many chunks (0 = off).
+timing-every: 200
+# Self-test after startup: generate (2r+1)^2 chunks in `world` and in a vanilla world of
+# the same seed, compare every block, optionally stop the server. radius -1 = off.
+compare-on-start:
+  radius: -1
+  world: world
+  shutdown: true
+  # full: the Horizon world against vanilla, decoration included.
+  # terrain: noise, surface and caves only on both sides (exact comparison of the Rust part).
+  # control: two vanilla worlds, to see how much vanilla differs from itself.
+  mode: full
+  # Centre chunk of the compared area.
+  chunk-x: 2000
+  chunk-z: -1500

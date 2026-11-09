@@ -1,0 +1,12 @@
+resources: '../third_party/horizon/.local/horizon-client/26.3'
+library: ''
+rust-biomes: false
+fast-write: true
+timing-every: 200
+compare-on-start:
+  radius: -1
+  world: world
+  shutdown: true
+  mode: bench
+  chunk-x: -6000
+  chunk-z: 7000
