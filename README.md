@@ -99,3 +99,7 @@ java --enable-native-access=ALL-UNNAMED -jar paper-26.3-246.jar --nogui
 - The plugin compiles against `test-server/versions/26.3/paper-26.3.jar`, which exists only after the server has run once.
 - `FastChunkWriter` depends on Paper 26.3's internals (Mojang names, `paperweight-mappings-namespace: mojang`),
   so it needs checking on each Paper update. A fork would make this a patch instead.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Horizon (`third_party/horizon`) is MIT too, under its own copyright. No Minecraft code or assets are included.
